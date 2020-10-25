@@ -502,6 +502,7 @@ BEGIN
     ID_FILE_DELAY_SLOT      "Enable Delay Slot"
     ID_FILE_FORWARDING      "Enable Forwarding"
     ID_BTB                  "Enable Branch Target Buffer"
+    ID_FILE_REGISTER_AS_NUMBER "Enable Registers as Numbers"
 END
 
 #endif    // English (U.S.) resources
