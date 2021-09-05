@@ -277,27 +277,27 @@ CWinEVEDoc::~CWinEVEDoc()
 
 	if (file.Open(fname,CFile::modeCreate | CFile::modeWrite))
 	{
-		sprintf(txt,"%d\n",bits(CODESIZE));
+		sprintf_s(txt,10, "%d\n",bits(CODESIZE));
 		file.WriteString(txt);
-		sprintf(txt,"%d\n",bits(DATASIZE));
+		sprintf_s(txt,10,"%d\n",bits(DATASIZE));
 		file.WriteString(txt);
-		sprintf(txt,"%d\n",ADD_LATENCY);
+		sprintf_s(txt,10,"%d\n",ADD_LATENCY);
 		file.WriteString(txt);
-		sprintf(txt,"%d\n",MUL_LATENCY);
+		sprintf_s(txt,10,"%d\n",MUL_LATENCY);
 		file.WriteString(txt);
-		sprintf(txt,"%d\n",DIV_LATENCY);
+		sprintf_s(txt,10,"%d\n",DIV_LATENCY);
 		file.WriteString(txt);
-		if (delay_slot) sprintf(txt,"1\n");
-		else			sprintf(txt,"0\n");
+		if (delay_slot) sprintf_s(txt,10,"1\n");
+		else			sprintf_s(txt,10,"0\n");
 		file.WriteString(txt);
-		if (forwarding) sprintf(txt,"1\n");
-		else			sprintf(txt,"0\n");
+		if (forwarding) sprintf_s(txt,10,"1\n");
+		else			sprintf_s(txt,10,"0\n");
 		file.WriteString(txt);
-		if (branch_target_buffer) sprintf(txt,"1\n");
-		else			          sprintf(txt,"0\n");
+		if (branch_target_buffer) sprintf_s(txt,10,"1\n");
+		else			          sprintf_s(txt,10,"0\n");
 		file.WriteString(txt);
-		if (registers_as_numbers) sprintf(txt,"1\n");
-		else			          sprintf(txt,"0\n");
+		if (registers_as_numbers) sprintf_s(txt,10,"1\n");
+		else			          sprintf_s(txt,10,"0\n");
 		file.WriteString(txt);
 
 	
@@ -444,7 +444,7 @@ void CWinEVEDoc::OnFileOpen()
 // if unable to write it there -  write it here instead
 			int pathstart=path.ReverseFind('\\');
 			if (pathstart>=0 && pathstart<MAX_PATH)
-				strcpy(LasDir,path.Left(pathstart));
+				strcpy_s(LasDir,MAX_PATH, path.Left(pathstart));
 			else
 				LasDir[0]=0;
 			fname=(CString)LasDir+'\\'+"winmips64.las";
@@ -531,7 +531,7 @@ void CWinEVEDoc::process_result(RESULT *result,BOOL show)
 		if (result->ID==STALLED)
 		{
 			structural_stalls++;
-			strcat(txt,"  Atasco Estructural en ID");
+			strcat_s(txt,300,"  Atasco Estructural en ID");
 		}
 		if (result->EX==STALLED)
 		{
@@ -602,17 +602,17 @@ int CWinEVEDoc::update_io(processor *cpu)
 	switch (func)
 	{
 	case (WORD32)1:
-		sprintf(txt,"%I64u\n",fp.u);
+		sprintf_s(txt,30,"%I64u\n",fp.u);
 		cpu->Terminal+=txt;
 		UpdateAllViews(NULL,2);
 		break;
 	case (WORD32)2:
-		sprintf(txt,"%I64d\n",fp.s);
+		sprintf_s(txt,30,"%I64d\n",fp.s);
 		cpu->Terminal+=txt;
 		UpdateAllViews(NULL,2);
 		break;
 	case (WORD32)3:
-		sprintf(txt,"%lf\n",fp.d);
+		sprintf_s(txt,30,"%lf\n",fp.d);
 		cpu->Terminal+=txt;
 		UpdateAllViews(NULL,2);
 		break;

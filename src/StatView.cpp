@@ -144,7 +144,11 @@ void CStatView::OnDraw(CDC* pDC)
 	pDC->TextOut(0,222," Code size");
 	pDC->SetTextColor(RGB(0,0,0));
 
-	sprintf(txt," %d Bytes",pDoc->codeptr);
+	int codeSize = pDoc->codeptr;
+	if (0 > codeSize) {
+		codeSize = 0;
+	}	
+	sprintf_s(txt,100," %d Bytes", codeSize);
 	pDC->TextOut(0,242,txt);
 
 }
@@ -200,7 +204,5 @@ void CStatView::OnKeyDown(UINT nChar, UINT nRepCnt, UINT nFlags)
 void CStatView::OnUpdate(CView* /* pSender */, LPARAM lHint, CObject* /* pHint */) 
 {
 	if (lHint==2) return;
-	InvalidateRect(NULL);
-	
-	
+	InvalidateRect(NULL);	
 }
