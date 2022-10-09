@@ -18,9 +18,6 @@
 static char THIS_FILE[] = __FILE__;
 #endif
 
-
-#define MAX_LINE 200
-
 static char *directives[]=
 {".space",
  ".asciiz",

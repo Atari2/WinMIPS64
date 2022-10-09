@@ -48,7 +48,7 @@ void CDataView::OnDraw(CDC* pDC)
 	WORD64 bytes;
 
 	CWinMIPS64Doc *pDoc = GetDocument();
-	char txt[400];
+	char txt[ALIGN_LINE];
 	const char *linetext;
 	int len;
 	pDC->SelectObject(&font);
@@ -61,7 +61,7 @@ void CDataView::OnDraw(CDC* pDC)
 	
 		for (j=pos;j<pos+2;j++) txt[j]=' ';
 		sprintword(&txt[pos+2],bytes);
-		len = 400 - (pos + 2 + 2*STEP);
+		len = ALIGN_LINE - (pos + 2 + 2*STEP);
 		sprintf_s(&txt[pos+2+2*STEP],len," %s",linetext);
 
 		pos=(14*i)/STEP;

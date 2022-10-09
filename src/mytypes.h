@@ -5,6 +5,9 @@
 // Useful types
 //
 
+#define MAX_LINE 2048
+#define ALIGN_LINE (MAX_LINE * 2)
+
 #define FALSE 0
 #define TRUE 1
 

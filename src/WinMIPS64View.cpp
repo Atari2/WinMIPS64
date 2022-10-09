@@ -59,7 +59,7 @@ void CWinMIPS64View::OnDraw(CDC* pDC)
 	CWinMIPS64Doc* pDoc = GetDocument();
 	ASSERT_VALID(pDoc);
 	const char *linetext;
-	char txt[400];
+	char txt[ALIGN_LINE];
 //AfxMessageBox("Drawing");
 	pDC->SelectObject(&font);
 
@@ -104,13 +104,13 @@ void CWinMIPS64View::OnDraw(CDC* pDC)
 
 		if ((pDoc->cpu.cstat[i])==0) 
 		{
-			len = 400 - pos;
+			len = ALIGN_LINE - pos;
 			sprintf_s(&txt[pos],len, " %08x %s",fourbytes,linetext);
 			pDC->TextOut(0,14*i/4,txt);
 		}
 		else 
 		{
-			len = 400 - pos;
+			len = ALIGN_LINE - pos;
 			if ((pDoc->cpu.cstat[i]&2)!=0)
 				sprintf_s(&txt[pos],len,"%c%08x %s",171,fourbytes,linetext);
 			else
