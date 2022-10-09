@@ -2063,7 +2063,7 @@ void CWinMIPS64Doc::OnReload()
 	if (res==0) 
 	{
 	//	AfxGetMainWnd()->SetWindowText(lastfile);
-		sprintf(txt,"File Loaded - %s",lastfile);
+		sprintf(txt,"File Loaded - %s",lastfile.GetBuffer());
 		pStatus->SetPaneText(0,txt);
 	}
 }
