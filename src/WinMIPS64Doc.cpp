@@ -528,7 +528,7 @@ void CWinMIPS64Doc::process_result(RESULT *result,BOOL show)
 		if (result->ID==STALLED)
 		{
 			structural_stalls++;
-			strcat_s(txt,300,"  Atasco Estructural en ID");
+			strcat_s(txt,300,"  Structural stall in ID");
 		}
 		if (result->EX==STALLED)
 		{
