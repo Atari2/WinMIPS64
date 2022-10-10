@@ -1573,7 +1573,7 @@ int CWinMIPS64Doc::first_pass(char *line,int lineptr)
         
         if (CODEORDATA==0)
         {
-            sprintf(txt,"Pass 1 - Error on line %d\n",lineptr);
+            sprintf(txt,"Pass 1 - Error on line %d\nNo .code/text or .data declaration before text",lineptr);
 			AfxMessageBox(txt);
             return 1;
         }
@@ -1616,7 +1616,7 @@ int CWinMIPS64Doc::first_pass(char *line,int lineptr)
         // increase instruction pointer
         if (CODEORDATA!=CODE)
         {
-            sprintf(txt,"Pass 1 - Error on line %d\n",lineptr);
+            sprintf(txt,"Pass 1 - Error on line %d\nInstruction in non-code section",lineptr);
 			AfxMessageBox(txt);
             return 1;
         }
@@ -1632,7 +1632,7 @@ int CWinMIPS64Doc::first_pass(char *line,int lineptr)
     }
     if (directive(1,ptr,line)) return 0;
 
-    sprintf(txt,"Pass 1 - Error on line %d\n",lineptr);
+    sprintf(txt,"Pass 1 - Error on line %d\nError parsing assembler directive",lineptr);
     AfxMessageBox(txt);
     return 1;
 }
