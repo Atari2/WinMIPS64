@@ -1029,7 +1029,7 @@ int CWinMIPS64Doc::openfile(CString fname)
 	if (res==1)
 	{
 		char txt[512];
-		sprintf(txt,"Unable to open file %s",fname);
+		sprintf(txt,"Unable to open file %s", fname.GetBuffer());
 		AfxMessageBox(txt,MB_OK|MB_ICONEXCLAMATION);
 		return res;
 	}
