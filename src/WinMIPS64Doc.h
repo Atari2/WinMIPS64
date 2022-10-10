@@ -118,7 +118,7 @@ protected:
 	void process_result(RESULT *,BOOL);
 	void clear();
 	int one_cycle(pipeline *,processor *,BOOL);
-	void check_stalls(int,char *,int,char *);
+	void check_stalls(int,const char *,int,char *);
 	void update_history(pipeline *,processor *,RESULT *);
 	int update_io(processor *);
 

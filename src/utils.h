@@ -16,7 +16,7 @@ extern void sprintdouble(char *,double);
 extern void sprintword(char *,WORD64);
 extern BOOL in_range(WORD32,WORD32);
 extern BOOL delimiter(int);
-extern int compare(char*,char *);
+extern int compare(const char*,const char *);
 extern char *skip(char *,char);
 extern char *skipover(char *,char);
 extern int is_symbol(char *);

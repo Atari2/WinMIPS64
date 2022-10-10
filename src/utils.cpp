@@ -124,7 +124,7 @@ int delimiter(int c)
     return 0;
 }
 
-int compare(char *ptr1, char *ptr2)
+int compare(const char *ptr1, const char *ptr2)
 { // compare strings, up to 0 in the second with all of the first
 	int incr=0;
     if (ptr1==NULL) return 0;

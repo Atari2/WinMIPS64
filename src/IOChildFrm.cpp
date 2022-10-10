@@ -24,7 +24,7 @@ CIOChildFrm::~CIOChildFrm()
 {
 }
 
-static char *IOtitle="Terminal";
+static const char *IOtitle="Terminal";
 
 BEGIN_MESSAGE_MAP(CIOChildFrm, CMDIChildWnd)
 	//{{AFX_MSG_MAP(CIOChildFrm)

@@ -231,7 +231,7 @@ union {
 
 typedef struct
 {
-    char *name;
+    const char *name;
     BYTE type;
     BYTE subtype;
     WORD32 op_code;

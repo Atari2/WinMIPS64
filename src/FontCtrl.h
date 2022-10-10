@@ -92,7 +92,7 @@ void CFontCtrl<BASE_TYPE>::RecreateFont(BOOL fRedraw)
 	LOGFONT lf;
 	if(!m_Font.m_hObject)
 	{
-		CFont* pFont = GetFont();
+		CFont* pFont = BASE_TYPE::GetFont();
 		if(!pFont)
 			return; // nothing to do
 		pFont->GetLogFont(&lf);
@@ -137,7 +137,7 @@ void CFontCtrl<BASE_TYPE>::ChangeFontStyle(int fAdd, int fRemove, BOOL fRedraw)
 	ASSERT(fAdd || fRemove);
 	m_fAdd = fAdd;
 	m_fRemove = fRemove;
-	if(::IsWindow(m_hWnd))
+	if(::IsWindow(BASE_TYPE::m_hWnd))
 		RecreateFont(fRedraw);
 }
 
@@ -146,7 +146,7 @@ void CFontCtrl<BASE_TYPE>::ChangeFontHeight(int nHeight, BOOL fRedraw)
 {
 	ASSERT(nHeight);
 	m_nHeight = nHeight;
-	if(::IsWindow(m_hWnd))
+	if(::IsWindow(BASE_TYPE::m_hWnd))
 		RecreateFont(fRedraw);
 }
 
@@ -157,7 +157,7 @@ void CFontCtrl<BASE_TYPE>::SetFont(CFont* pFont, BOOL fRedraw)
 	LOGFONT lf;
 	pFont->GetLogFont(&lf);
 	m_Font.CreateFontIndirect(&lf);
-	if(::IsWindow(m_hWnd))
+	if(::IsWindow(BASE_TYPE::m_hWnd))
 		RecreateFont(fRedraw);
 }
 
@@ -165,7 +165,7 @@ template<class BASE_TYPE>
 void CFontCtrl<BASE_TYPE>::SetFont(LOGFONT& lf, BOOL fRedraw)
 {
 	m_Font.CreateFontIndirect(&lf);
-	if(::IsWindow(m_hWnd))
+	if(::IsWindow(BASE_TYPE::m_hWnd))
 		RecreateFont(fRedraw);
 }
 
@@ -194,7 +194,7 @@ template<class BASE_TYPE, int InitialStyle = 0, int InitialHeight = 0>
 class CFontCtrlEx : public CFontCtrl<BASE_TYPE>
 {
 public:
-	CFontCtrlEx(){m_fAdd = InitialStyle; m_nHeight = InitialHeight;}
+	CFontCtrlEx(){ BASE_TYPE::m_fAdd = InitialStyle; BASE_TYPE::m_nHeight = InitialHeight;}
 };
 
 /////////////////////////////////////////////////////////////////////////////

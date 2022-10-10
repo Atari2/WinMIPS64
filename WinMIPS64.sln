@@ -1,6 +1,8 @@
 ﻿
-Microsoft Visual Studio Solution File, Format Version 11.00
-# Visual Studio 2010
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.32901.82
+MinimumVisualStudioVersion = 10.0.40219.1
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "WinMIPS64", "WinMIPS64.vcxproj", "{707395BF-CE47-461C-9A13-BAE7D8C5D7EE}"
 EndProject
 Global
@@ -13,8 +15,8 @@ Global
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{707395BF-CE47-461C-9A13-BAE7D8C5D7EE}.Debug|Win32.ActiveCfg = Debug|Win32
 		{707395BF-CE47-461C-9A13-BAE7D8C5D7EE}.Debug|Win32.Build.0 = Debug|Win32
-		{707395BF-CE47-461C-9A13-BAE7D8C5D7EE}.Debug|x64.ActiveCfg = Release|x64
-		{707395BF-CE47-461C-9A13-BAE7D8C5D7EE}.Debug|x64.Build.0 = Release|x64
+		{707395BF-CE47-461C-9A13-BAE7D8C5D7EE}.Debug|x64.ActiveCfg = Debug|x64
+		{707395BF-CE47-461C-9A13-BAE7D8C5D7EE}.Debug|x64.Build.0 = Debug|x64
 		{707395BF-CE47-461C-9A13-BAE7D8C5D7EE}.Release|Win32.ActiveCfg = Release|Win32
 		{707395BF-CE47-461C-9A13-BAE7D8C5D7EE}.Release|Win32.Build.0 = Release|Win32
 		{707395BF-CE47-461C-9A13-BAE7D8C5D7EE}.Release|x64.ActiveCfg = Release|x64
@@ -22,5 +24,8 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {E8AA7E65-C891-400C-81EB-BB00263668CF}
 	EndGlobalSection
 EndGlobal

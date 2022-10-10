@@ -26,7 +26,7 @@ CCyclesChildFrm::~CCyclesChildFrm()
 {
 }
 
-static char *cyclestit="Cycles";
+static const char *cyclestit="Cycles";
 
 BEGIN_MESSAGE_MAP(CCyclesChildFrm, CMDIChildWnd)
 	//{{AFX_MSG_MAP(CCyclesChildFrm)

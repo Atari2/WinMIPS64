@@ -24,7 +24,7 @@ CPipeChildFrm::~CPipeChildFrm()
 {
 }
 
-static char *pipetit="Pipeline";
+static const char *pipetit="Pipeline";
 
 BEGIN_MESSAGE_MAP(CPipeChildFrm, CMDIChildWnd)
 	//{{AFX_MSG_MAP(CPipeChildFrm)

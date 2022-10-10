@@ -18,7 +18,7 @@
 static char THIS_FILE[] = __FILE__;
 #endif
 
-static char *directives[]=
+static const char *directives[]=
 {".space",
  ".asciiz",
  ".align",
@@ -458,7 +458,7 @@ void CWinMIPS64Doc::OnFileOpen()
 	UpdateAllViews(NULL,1L);
 }
 
-void CWinMIPS64Doc::check_stalls(int status,char *str,int rawreg,char *txt)
+void CWinMIPS64Doc::check_stalls(int status,const char *str,int rawreg,char *txt)
 {
 	char mess[100];
 	if (status==RAW)	
