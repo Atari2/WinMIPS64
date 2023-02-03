@@ -28,6 +28,8 @@ CIOView::CIOView() :  m_ViewCharSize(0,0)
 
 CIOView::~CIOView()
 {
+	if (m_pFont != NULL)
+		delete m_pFont;
 }
 
 

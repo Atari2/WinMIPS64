@@ -1080,14 +1080,14 @@ int CWinMIPS64Doc::mygets(char *line,int max,CFile *fp)
 	line[i]='\0';
 	return 0;
 }
-
+void clear_addr_line_mapping();
 int CWinMIPS64Doc::openit(CString fname)
 {
 	int i,j,k,gotline,lineptr,errors;
 	char preline[MAX_LINE+1];
 	char line[MAX_LINE+1];
 	CStdioFile asmfile;
-	
+	clear_addr_line_mapping();
 	errors=0;
 	CODEORDATA=0;
 	codeptr=0;
@@ -1556,6 +1556,9 @@ BOOL CWinMIPS64Doc::directive(int pass,char *ptr,char *line)
 
 // fill in symbol tables and check for syntax errors
 
+void insert_addr_line_mapping(char* line, int addr);
+void clear_addr_line_mapping();
+
 int CWinMIPS64Doc::first_pass(char *line,int lineptr)
 {
     int i,len;
@@ -1614,6 +1617,7 @@ int CWinMIPS64Doc::first_pass(char *line,int lineptr)
     {
         // instruction found
         // increase instruction pointer
+		insert_addr_line_mapping(ptr, codeptr);
         if (CODEORDATA!=CODE)
         {
             sprintf(txt,"Pass 1 - Error on line %d\nInstruction in non-code section",lineptr);

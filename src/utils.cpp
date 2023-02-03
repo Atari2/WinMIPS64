@@ -420,6 +420,8 @@ BOOL getsym(symbol_table *table,int size,char *&ptr,WORD32 *n)
     return FALSE;
 }
 
+void clear_branch_map();
+
 void init_processor(processor *cpu,int codesize,int datasize)
 {
     int i;
@@ -434,6 +436,7 @@ void init_processor(processor *cpu,int codesize,int datasize)
     cpu->code=NULL;
     cpu->data=NULL;
     cpu->status=RUNNING;
+    clear_branch_map();
 }
 
 void init_pipeline(pipeline *pipe,int ADDS,int MULS,int DIVS)
@@ -457,6 +460,7 @@ void init_pipeline(pipeline *pipe,int ADDS,int MULS,int DIVS)
 	pipe->halting=FALSE;
 	pipe->mem_wb.condition=TRUE;
 	pipe->ex_mem.condition=TRUE;
+    clear_branch_map();
 }
 
 static char const*conventionRegisterName[32] = {
