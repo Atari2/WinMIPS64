@@ -95,12 +95,33 @@ struct MNPredictor {
 		return v::transform(pred.preds, [](uint8_t v) { return std::to_string(v); }) | v::join_with(", "sv) | r::to<std::string>();
 	}
 
+	static std::string_view shl_to_string() {
+		static char buf[M_V + 1]{};
+		buf[M_V] = '\0';
+		for (int32_t i = M_V; i > 0; --i) {
+			buf[i-1] = (shift_reg & (1 << (M_V - i))) == 0 ? '0' : '1';
+		}
+		return buf;
+	}
+
+
+	static void print_debug_cycle(int addr, bool taken) {
+		int index = addr % M_N_PRED_LINES;
+		predictor& pred = predictors[index];
+		auto str = std::format("CYCLE {}: branch {} is {}, shl: {}, predictors: {}\n",
+			(total_branches-1) / 4, addr_to_line[addr], taken ? "taken" : "not taken", shl_to_string(), pred_to_string(pred));
+		WriteFile(GetStdHandle(STD_OUTPUT_HANDLE), str.data(), static_cast<DWORD>(str.size()), NULL, NULL);
+	}
+
 	static void branch(int addr, bool taken) {
 		int index = addr % M_N_PRED_LINES;
 		predictor& pred = predictors[index];
 		update_pred(pred.preds[shift_reg], taken, pred.mispredictions);
 		shift_reg = ((shift_reg << 1) & mask) | (taken ? 1 : 0);
 		total_branches++;
+#if 0
+		print_debug_cycle(addr, taken);
+#endif
 	}
 };
 
@@ -2001,16 +2022,16 @@ int clock_tick(pipeline* pipe, processor* mips, BOOL forwarding, BOOL delay_slot
 				return val + pred.mispredictions;
 				});
 			HANDLE hdl = GetStdHandle(STD_OUTPUT_HANDLE);
-			WriteFile(hdl, fmt.c_str(), fmt.size(), NULL, NULL);
+			WriteFile(hdl, fmt.c_str(), static_cast<DWORD>(fmt.size()), NULL, NULL);
 			for (const auto& [addr, _] : bht_predictor) {
 				const auto& pred = MNPredictor::predictors[addr % M_N_PRED_LINES];
 				auto out_str = std::format("Mispredicted branch {} (0x{:04X}) {} times, with status [{}]\n",
 					addr_to_line[addr], addr, pred.mispredictions, MNPredictor::pred_to_string(pred));
-				WriteFile(hdl, out_str.c_str(), out_str.size(), NULL, NULL);
+				WriteFile(hdl, out_str.c_str(), static_cast<DWORD>(out_str.size()), NULL, NULL);
 			}
 			auto ratio = (double)mispredicted / (double)MNPredictor::total_branches * 100.0;
 			std::string mnpredictor = std::format("Mispredicted {} branches out of {} ({:.3}%)\n", mispredicted, MNPredictor::total_branches, ratio);
-			WriteFile(hdl, mnpredictor.c_str(), mnpredictor.size(), NULL, NULL);
+			WriteFile(hdl, mnpredictor.c_str(), static_cast<DWORD>(mnpredictor.size()), NULL, NULL);
 			return HALTED;           /* halted */
 		}
 	}
